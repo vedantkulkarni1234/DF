@@ -16,6 +16,14 @@ JSDOM.fromFile(path.join(root, 'index.html'), {
 }).then(async dom => {
   await new Promise(r => setTimeout(r, 400));
   const { window } = dom;
+  // Regression: overlays must not cover the app on first load
+  for (const id of ['paletteOverlay', 'modalOverlay', 'contextMenu']) {
+    const el = window.document.getElementById(id);
+    if (!el.hidden || window.getComputedStyle(el).display !== 'none')
+      errors.push(`${id}: visible on initial load (blurred-screen regression)`);
+  }
+  console.log('✓ overlays hidden on initial load');
+
   const screens = ['command','orchestrator','agents','investigations','case','graph','vault','reports','tools','plugins','skills','mcp','settings','states'];
   for (const s of screens) {
     try {

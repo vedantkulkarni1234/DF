@@ -1,4 +1,6 @@
 *,*::before,*::after{box-sizing:border-box}
+/* Author-level display rules must never defeat the HTML hidden attribute */
+[hidden]{display:none!important}
 html,body{height:100%}
 body{margin:0;background:var(--bg-base);color:var(--text-primary);font-family:var(--font-sans);font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;font-feature-settings:"cv11","ss01"}
 button,input,textarea,select{font:inherit;color:inherit}
