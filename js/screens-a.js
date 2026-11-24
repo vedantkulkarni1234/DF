@@ -35,7 +35,7 @@ function renderCommand() {
         <div class="composer-model" data-action="model-menu">${IC('sparkles',14)} <strong>Axiom Reasoner 3</strong><span class="composer-model-sep"></span><span>Autonomous</span><span class="switch on" data-action="toggle-autonomous" title="Autonomous resource selection"></span>${IC('chevronDown',13)}</div>
         <div class="composer-top-right"><span class="mono tertiary">${IC('lock',12)} Case-scoped & encrypted</span></div>
       </div>
-      <textarea class="composer-input" id="promptInput" placeholder="e.g. Investigate a suspected shell-company network behind unpaid invoices linked to northbridge-pay.com. Identify beneficial owners, trace payments, and assess confidence." spellcheck="false"></textarea>
+      <textarea class="composer-input" id="promptInput" placeholder="Describe the objective — for example: map the shell-company network behind unpaid invoices linked to northbridge-pay.com, identify beneficial owners and trace payments." spellcheck="false"></textarea>
       <div class="composer-attachments" id="composerAttachments">
         <div class="file-pill">${IC('file',13)} invoice_scan_7781.pdf <span class="tertiary mono">2.4 MB</span><button data-action="remove-attachment" aria-label="Remove">${IC('x',12)}</button></div>
         <div class="file-pill">${IC('image',13)} domain_capture.png <span class="tertiary mono">810 KB</span><button data-action="remove-attachment" aria-label="Remove">${IC('x',12)}</button></div>

@@ -12,7 +12,11 @@ vc.on('error', (...a) => errors.push('console: ' + a.join(' ')));
 
 JSDOM.fromFile(path.join(root, 'index.html'), {
   runScripts: 'dangerously', resources: 'usable', virtualConsole: vc,
-  beforeParse(win) { win.matchMedia = () => ({ matches: false, addListener(){}, removeListener(){} }); }
+  beforeParse(win) {
+    win.matchMedia = () => ({ matches: false, addListener(){}, removeListener(){} });
+    win.URL.createObjectURL = () => 'blob:test'; win.URL.revokeObjectURL = () => {};
+    Object.defineProperty(win.navigator, 'clipboard', { value: { writeText: async () => {} }, configurable: true });
+  }
 }).then(async dom => {
   await new Promise(r => setTimeout(r, 400));
   const { window } = dom;
@@ -44,6 +48,37 @@ JSDOM.fromFile(path.join(root, 'index.html'), {
     if (!window.eval('state.tabs.includes("agents")') || !window.eval('state.tabs.includes("mcp")')) errors.push('capability tabs: pages not registered in tab strip');
     console.log('✓ capabilities tab group');
   } catch (e) { errors.push('capability tabs: ' + e.stack); }
+
+  // Real actions: menus, state changes, downloads, help content
+  try {
+    window.eval(`navigate('command')`);
+    window.document.querySelector('[data-action="shortcuts"]').click();
+    if (!window.document.getElementById('modalHost').textContent.includes('Keyboard shortcuts')) errors.push('shortcuts modal did not open');
+    window.eval('closeModal()');
+
+    window.document.getElementById('modelPicker').click();
+    if (window.document.getElementById('popover').hidden) errors.push('model menu did not open');
+    window.document.querySelector('[data-action="select-model"][data-value="Axiom Vision 2"]').click();
+    if (window.eval('state.model') !== 'Axiom Vision 2') errors.push('model selection did not apply');
+
+    window.eval(`navigate('plugins')`);
+    const before = window.eval('DATA.plugins[0].status');
+    window.document.querySelector('[data-action="toggle-plugin"]').click();
+    if (window.eval('DATA.plugins[0].status') === before) errors.push('plugin install state did not change');
+
+    window.eval(`downloadFile('smoke.json','{}','application/json')`);
+    console.log('✓ real actions (menus, state, downloads, help)');
+  } catch (e) { errors.push('real actions: ' + e.stack); }
+
+  // No prototype-only copy in the product UI
+  try {
+    window.eval(`navigate('command')`);
+    const text = window.document.body.textContent;
+    for (const phrase of ['represented in the prototype','ready for implementation','Component states','Design system reference']) {
+      if (text.includes(phrase)) errors.push(`unreal copy still visible: ${phrase}`);
+    }
+    console.log('✓ no prototype-only copy in UI');
+  } catch (e) { errors.push('copy audit: ' + e.stack); }
 
   // Core interactions
   try {

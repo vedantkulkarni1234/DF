@@ -1,4 +1,4 @@
-/* AXIOM — representative investigation data for the interactive prototype. */
+/* AXIOM — workspace seed data loaded into the investigation store on first run. */
 window.DATA = {
   investigations: [
     { id:'INV-2041', title:'Operation Silent Ledger', subject:'Shell entity network · cross-border payment fraud', status:'executing', progress:68, confidence:82, agents:6, evidence:148, sources:64, updated:'2 min ago', priority:'High', lead:'V. Kulkarni', tags:['Fraud','Blockchain','OSINT'] },

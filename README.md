@@ -25,7 +25,7 @@ Or open `index.html` directly in a browser. No build step, no package install.
 | Plugin, Skills, MCP management interfaces | `plugins`, `skills`, `mcp`, `tools` |
 | Intelligence graph + forensic evidence workspace | `graph`, `vault` |
 | Light & dark mode variations | Top-bar toggle or `⌘⇧L` |
-| Loading, empty, error, success, permission states | Route `states` (sidebar footer) |
+| Loading, empty, error, success, permission states | Internal route `states` (kept out of the product UI) |
 | Developer-ready UI/UX specifications | [`docs/05-developer-specifications.md`](docs/05-developer-specifications.md) |
 | Figma handoff structure | [`docs/06-figma-handoff.md`](docs/06-figma-handoff.md) |
 
@@ -54,6 +54,7 @@ Or open `index.html` directly in a browser. No build step, no package install.
 - Drag files onto the composer or vault to see attachment / hashing affordances.
 - Resize the left and right panels by dragging their dividers; collapse the right panel from its header.
 - Switch themes without relayout; all tokens are semantic.
+- Real local behavior: model/workspace/user/notification menus, file import, report/evidence/graph downloads, plugin install state, settings persistence and help/shortcut dialogs.
 
 ## Verification
 

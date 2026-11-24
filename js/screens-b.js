@@ -125,7 +125,7 @@ function renderSkills() {
           <div><div class="eyebrow mb-2">AGENT COMPATIBILITY</div><div class="tag-list"><span class="chip">${s.compat}</span></div></div></div>
       </div></section>
   </div>
-  <div class="test-panel panel mt-4"><div class="panel-head"><h3>Test environment</h3><span class="badge outline mono">SANDBOX · no case data written</span></div><div class="panel-body"><div class="test-console mono"><span class="tertiary">$ axiom skills test ${s.name} --fixture registry_cluster_03</span>\n<span style="color:var(--success)">✓</span> 6 steps executed · 2.4s\n<span style="color:var(--success)">✓</span> 4 entities resolved · 3 shared attributes\n<span style="color:var(--warning)">!</span> 1 link below confidence threshold (0.46)\n<span class="tertiary">Result: PASS with 1 advisory</span></div></div></div>`;
+  <div class="test-panel panel mt-4"><div class="panel-head"><h3>Latest test run</h3><span class="badge outline mono">RUN-8841 · 22 Nov 14:18 UTC</span></div><div class="panel-body"><div class="test-console mono"><span class="tertiary">$ axiom skills test ${s.name} --fixture registry_cluster_03</span>\n<span style="color:var(--success)">✓</span> 6 steps executed · 2.4s\n<span style="color:var(--success)">✓</span> 4 entities resolved · 3 shared attributes\n<span style="color:var(--warning)">!</span> 1 link below confidence threshold (0.46)\n<span class="tertiary">Result: PASS with 1 advisory</span></div></div></div>`;
 }
 
 function renderMCP() {
