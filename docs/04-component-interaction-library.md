@@ -101,6 +101,7 @@ Companion to the implemented prototype. Each entry lists the Figma component str
 | Pattern | Trigger | Result |
 |---|---|---|
 | Command palette | ⌘K or search click | Grouped actions, cases, agents; ↑↓ + Enter; Esc cancel |
+| CAPABILITIES tabs | ⌘1–5 or click sidebar / in-page tab bar | Switch Agents, Tools, Plugins, Skills, MCP; each opens as a tab in the strip |
 | New investigation | ⌘N / CTA | Command Center, prompt focused |
 | Theme toggle | ⌘⇧L / top-bar icon | Immediate theme swap, no flash, persists |
 | Panel collapse | Context collapse button / ⌘\ for sidebar | Smooth width transition; reopen rail |

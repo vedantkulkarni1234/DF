@@ -33,6 +33,18 @@ JSDOM.fromFile(path.join(root, 'index.html'), {
       console.log(`✓ ${s.padEnd(15)} ${html.length} chars`);
     } catch (e) { errors.push(`${s}: ${e.stack}`); }
   }
+  // CAPABILITIES tab group: 5 tabs, active state, tab strip registration, switching
+  try {
+    window.eval(`navigate('agents')`);
+    const tabs = [...window.document.querySelectorAll('.capability-tab')];
+    if (tabs.length !== 5) errors.push(`capability tabs: expected 5, got ${tabs.length}`);
+    if (!window.document.querySelector('.capability-tab.active[data-nav="agents"]')) errors.push('capability tabs: missing active state');
+    window.document.querySelector('.capability-tab[data-nav="mcp"]').click();
+    if (window.eval('state.screen') !== 'mcp') errors.push('capability tabs: click did not switch page');
+    if (!window.eval('state.tabs.includes("agents")') || !window.eval('state.tabs.includes("mcp")')) errors.push('capability tabs: pages not registered in tab strip');
+    console.log('✓ capabilities tab group');
+  } catch (e) { errors.push('capability tabs: ' + e.stack); }
+
   // Core interactions
   try {
     window.eval(`navigate('command')`);

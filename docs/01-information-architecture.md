@@ -152,6 +152,8 @@ AXIOM
 | Right contextual panel | Depends on active screen | Persistent, collapsible, resizable 260–520px |
 | Status bar | Live system metrics | Persistent, non-interactive |
 
+The five CAPABILITIES items (Agents, Tools, Plugins, Skills, MCP) form a tabbed page group: clicking one registers it in the tab strip and shows a dedicated tab bar across the top of the page; ⌘1–5 switches directly.
+
 **Navigation hierarchy:** Command Center is the default and home. Management screens (Agents, Tools, Plugins, Skills, MCP, Settings) are second-level — reachable from the sidebar and from contextual links inside workflows, never required for a first investigation.
 
 ---

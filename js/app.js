@@ -27,6 +27,8 @@ const NAV = [
   ]},
   { group:'SYSTEM', items:[{id:'settings', label:'Settings', icon:'settings'}]}
 ];
+const CAPABILITIES = NAV.find(g => g.group === 'CAPABILITIES').items;
+const CAP_IDS = CAPABILITIES.map(i => i.id);
 const SCREEN_TITLES = {command:'Investigation pulse',orchestrator:'Live orchestration',agents:'Agent fleet',investigations:'Case portfolio',case:'Case context',graph:'Graph context',vault:'Vault context',reports:'Report context',tools:'Tool context',plugins:'Plugin context',skills:'Skill context',mcp:'Server context',settings:'Administration',states:'System context'};
 
 /* ------------------------- shared helpers ------------------------- */
@@ -65,16 +67,26 @@ function renderNav(){
       ${IC(it.icon,16)}<span>${it.label}</span>${it.count?`<span class="nav-count">${it.count}</span>`:''}${it.badge?`<span class="nav-count" style="color:var(--success)">${it.badge}</span>`:''}</button>`).join('')}</div>`).join('')}`;
 }
 function renderTabs(){
-  const labels = {command:'Command Center',orchestrator:'Operation Silent Ledger',case:'INV-2041 · Silent Ledger',graph:'Intelligence graph'};
-  document.getElementById('tabstrip').innerHTML = state.tabs.map(t=>`<div class="tab ${t===state.screen?'active':''}" data-nav="${t}">${IC(t==='orchestrator'||t==='case'?'activity':'command',12)}<span>${labels[t]||t[0].toUpperCase()+t.slice(1)}</span>${state.tabs.length>1?`<button class="tab-x" data-action="close-tab" data-id="${t}">${IC('x',11)}</button>`:''}</div>`).join('') + `<button class="tab-add" data-nav="command" title="New tab">${IC('plus',14)}</button>`;
+  const labels = {command:'Command Center',orchestrator:'Operation Silent Ledger',investigations:'Investigations',case:'INV-2041 · Silent Ledger',graph:'Intelligence graph',vault:'Evidence vault',reports:'Report',agents:'AI Agents',tools:'Tools & integrations',plugins:'Plugin marketplace',skills:'AI Skills',mcp:'MCP servers',settings:'Settings',states:'Component states'};
+  const icons = {command:'command',orchestrator:'activity',investigations:'cases',case:'activity',graph:'graph',vault:'vault',reports:'report',agents:'bot',tools:'tools',plugins:'puzzle',skills:'sparkles',mcp:'server',settings:'settings',states:'help'};
+  document.getElementById('tabstrip').innerHTML = state.tabs.map(t=>`<div class="tab ${t===state.screen?'active':''} ${CAP_IDS.includes(t)?'capability-tab-in-strip':''}" data-nav="${t}" title="${labels[t]||t}">${IC(icons[t]||'command',12)}<span>${labels[t]||t[0].toUpperCase()+t.slice(1)}</span>${state.tabs.length>1?`<button class="tab-x" data-action="close-tab" data-id="${t}">${IC('x',11)}</button>`:''}</div>`).join('') + `<button class="tab-add" data-nav="command" title="New investigation">${IC('plus',14)}</button>`;
+}
+/* CAPABILITIES section rendered as a tabbed page group */
+function renderCapabilityTabs(){
+  if(!CAP_IDS.includes(state.screen)) return '';
+  return `<div class="capability-tabs">
+    <div class="capability-tabs-label"><span class="eyebrow">CAPABILITIES</span><span class="capability-tabs-sub">Manage what the orchestrator can use</span></div>
+    <div class="capability-tabs-list">${CAPABILITIES.map((c,i)=>`<button class="capability-tab ${state.screen===c.id?'active':''}" data-nav="${c.id}" title="${c.label} (⌘${i+1})">
+      ${IC(c.icon,15)}<span>${c.label}</span>${c.count?`<span class="cap-count">${c.count}</span>`:''}<kbd>⌘${i+1}</kbd></button>`).join('')}</div>
+    <div class="capability-tabs-hint">${IC('zap',12)} Auto-selected during investigations</div>
+  </div>`;
 }
 const VIEWS = {command:renderCommand,orchestrator:renderOrchestrator,agents:renderAgents,investigations:renderInvestigations,case:renderCase,graph:renderGraph,vault:renderVault,reports:renderReports,tools:renderTools,plugins:renderPlugins,skills:renderSkills,mcp:renderMCP,settings:renderSettings,states:renderStates};
 
 function navigate(screen, addTab){
   if(!VIEWS[screen]) screen='command';
   state.screen=screen;
-  if(addTab && !state.tabs.includes(screen)) state.tabs.push(screen);
-  if(!state.tabs.includes(screen)) state.tabs.unshift(screen);
+  if(!state.tabs.includes(screen)) state.tabs.push(screen);
   renderNav(); renderTabs(); renderView(); renderContext();
   document.getElementById('viewScroll').scrollTop=0;
   if(window.innerWidth<1240) document.getElementById('app').classList.add('panel-hidden-by-default');
@@ -115,7 +127,7 @@ function renderContext(){
       <div class="progress mt-3"><i style="width:${state.progress}%"></i></div>
     </div>${extra}`;
 }
-function renderView(){ document.getElementById('view').innerHTML = (VIEWS[state.screen]||renderCommand)(); }
+function renderView(){ const render = VIEWS[state.screen]||renderCommand; document.getElementById('view').innerHTML = renderCapabilityTabs() + render(); }
 
 /* ------------------------- overlays ------------------------- */
 const PALETTE_ITEMS = [
@@ -279,6 +291,7 @@ document.addEventListener('keydown',e=>{
   if(meta&&e.shiftKey&&e.key.toLowerCase()==='l'){e.preventDefault();setTheme(state.theme==='dark'?'light':'dark');}
   if(meta&&e.key==='\\'){e.preventDefault();document.getElementById('sidebarToggle').click();}
   if(meta&&e.key.toLowerCase()==='n'){e.preventDefault();navigate('command');document.getElementById('promptInput')?.focus();}
+  if(meta&&!e.shiftKey&&/^[1-5]$/.test(e.key)){e.preventDefault();navigate(CAP_IDS[+e.key-1]);}
   if(e.key==='Escape'){closePalette();closeModal();contextMenu.hidden=true;}
   if(!document.getElementById('paletteOverlay').hidden){
     if(e.key==='ArrowDown'){e.preventDefault();paletteIndex=Math.min(paletteFiltered.length-1,paletteIndex+1);drawPalette();}

@@ -39,6 +39,7 @@ Or open `index.html` directly in a browser. No build step, no package install.
 |---|---|
 | `⌘/Ctrl K` | Command palette |
 | `⌘/Ctrl N` | New investigation |
+| `⌘/Ctrl 1–5` | Switch CAPABILITIES tabs (Agents → MCP) |
 | `⌘/Ctrl ⇧ L` | Toggle light / dark |
 | `⌘/Ctrl \` | Collapse / expand sidebar |
 | `Esc` | Close overlays |
