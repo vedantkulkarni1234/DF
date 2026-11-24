@@ -1,0 +1,137 @@
+/* ==========================================================================
+   AXIOM DESIGN TOKENS  ·  semantic, themeable, Figma-variable-compatible
+   Naming: --{category}-{role}-{property}-{step}
+   ========================================================================== */
+:root {
+  /* Brand primitives (theme independent) */
+  --brand-50:  #eef2ff;
+  --brand-100: #e0e7ff;
+  --brand-200: #c7d2fe;
+  --brand-300: #a5b4fc;
+  --brand-400: #818cf8;
+  --brand-500: #6366f1;
+  --brand-600: #4f46e5;
+  --brand-700: #4338ca;
+  --violet-500: #8b5cf6;
+  --violet-400: #a78bfa;
+
+  --green-500: #22c55e;
+  --amber-500: #f59e0b;
+  --red-500: #ef4444;
+  --cyan-500: #22d3ee;
+
+  /* Font stacks */
+  --font-sans: Inter, "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* Radii */
+  --r-xs: 4px; --r-sm: 6px; --r-md: 8px; --r-lg: 10px; --r-xl: 14px; --r-2xl: 20px; --r-full: 999px;
+
+  /* Spatial scale — 4 / 8 point system */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+  --sp-6: 24px; --sp-7: 32px; --sp-8: 40px; --sp-9: 48px; --sp-10: 64px;
+
+  /* Motion */
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --dur-fast: 120ms; --dur: 180ms; --dur-slow: 280ms;
+
+  /* Layout */
+  --h-top: 56px; --h-status: 28px; --h-tab: 40px;
+  --w-sidebar: 248px; --w-context: 324px;
+}
+
+/* DARK — primary theme */
+:root, [data-theme="dark"] {
+  --bg-base: #0a0c10;
+  --bg-sidebar: #0c0f14;
+  --bg-surface: #11141b;
+  --bg-elevated: #181c25;
+  --bg-overlay: #1d222d;
+  --bg-hover: #1a1f29;
+  --bg-active: #202632;
+  --bg-inset: #0d1016;
+  --bg-scrim: rgba(4,6,10,.72);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #67748a;
+  --text-inverse: #0a0c10;
+  --text-accent: #a5b4fc;
+
+  --border-subtle: #1b202a;
+  --border-default: #252a35;
+  --border-strong: #343b49;
+  --border-accent: #4f46e5;
+
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-soft: rgba(99,102,241,.13);
+  --accent-softer: rgba(99,102,241,.07);
+  --accent-border: rgba(99,102,241,.34);
+  --violet-soft: rgba(139,92,246,.13);
+
+  --success: #22c55e;
+  --success-soft: rgba(34,197,94,.12);
+  --warning: #f59e0b;
+  --warning-soft: rgba(245,158,11,.12);
+  --danger: #ef4444;
+  --danger-soft: rgba(239,68,68,.12);
+  --info: #38bdf8;
+  --info-soft: rgba(56,189,248,.12);
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+  --shadow-md: 0 8px 24px rgba(0,0,0,.36);
+  --shadow-lg: 0 24px 64px rgba(0,0,0,.55);
+  --shadow-glow: 0 0 0 1px rgba(99,102,241,.28), 0 8px 32px rgba(99,102,241,.14);
+  --grid-line: rgba(148,163,184,.055);
+  --graph-edge: #3b4557;
+  color-scheme: dark;
+}
+
+/* LIGHT — equally considered, not an inverted afterthought */
+[data-theme="light"] {
+  --bg-base: #f7f8fb;
+  --bg-sidebar: #f1f3f8;
+  --bg-surface: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-overlay: #ffffff;
+  --bg-hover: #eff1f7;
+  --bg-active: #e7eafb;
+  --bg-inset: #f5f6fa;
+  --bg-scrim: rgba(15,23,42,.32);
+
+  --text-primary: #101827;
+  --text-secondary: #556178;
+  --text-tertiary: #808ba0;
+  --text-inverse: #ffffff;
+  --text-accent: #4f46e5;
+
+  --border-subtle: #e8ebf2;
+  --border-default: #dce1eb;
+  --border-strong: #c5cddd;
+  --border-accent: #818cf8;
+
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-soft: rgba(79,70,229,.08);
+  --accent-softer: rgba(79,70,229,.045);
+  --accent-border: rgba(79,70,229,.28);
+  --violet-soft: rgba(139,92,246,.09);
+
+  --success: #16a34a;
+  --success-soft: rgba(22,163,74,.10);
+  --warning: #d97706;
+  --warning-soft: rgba(217,119,6,.10);
+  --danger: #dc2626;
+  --danger-soft: rgba(220,38,38,.09);
+  --info: #0284c7;
+  --info-soft: rgba(2,132,199,.09);
+
+  --shadow-sm: 0 1px 2px rgba(16,24,40,.06);
+  --shadow-md: 0 8px 24px rgba(16,24,40,.10);
+  --shadow-lg: 0 24px 64px rgba(16,24,40,.18);
+  --shadow-glow: 0 0 0 1px rgba(79,70,229,.22), 0 8px 32px rgba(79,70,229,.10);
+  --grid-line: rgba(15,23,42,.045);
+  --graph-edge: #b9c2d2;
+  color-scheme: light;
+}

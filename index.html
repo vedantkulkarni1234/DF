@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AXIOM — Autonomous Intelligence Operating System. Investigation prototype." />
+  <title>AXIOM — Autonomous Intelligence OS</title>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/screens.css" />
+</head>
+<body>
+  <div class="app-shell" id="app">
+    <!-- TOP NAVIGATION -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn brand-menu" id="sidebarToggle" aria-label="Toggle sidebar" title="Toggle sidebar (⌘\)">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 3.5 7v10L12 22l8.5-5V7L12 2Z" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.2 7.6 9.7v4.6L12 16.8l4.4-2.5V9.7L12 7.2Z" fill="currentColor" opacity=".85"/></svg></span>
+        </button>
+        <div class="brand-lockup">
+          <span class="brand-name">AXIOM</span>
+          <span class="brand-divider"></span>
+          <span class="brand-sub">Intelligence OS</span>
+        </div>
+        <button class="workspace-switch" id="workspaceSwitch">
+          <span class="ws-avatar">NR</span>
+          <span class="ws-text"><strong>Northstar Investigations</strong><small>Enterprise workspace</small></span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="topbar-center">
+        <button class="global-search" id="globalSearch">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span>Search cases, evidence, entities…</span>
+          <kbd>⌘ K</kbd>
+        </button>
+      </div>
+      <div class="topbar-right">
+        <div class="system-status" title="All systems operational">
+          <span class="pulse-dot"></span><span>Systems nominal</span>
+        </div>
+        <button class="model-picker" id="modelPicker">
+          <span class="model-glyph">✳</span><span>Axiom Reasoner 3</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn" id="notificationBtn" aria-label="Notifications" title="Notifications">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.7 19a2 2 0 0 1-3.4 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="notify-dot"></span>
+        </button>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme (⌘⇧L)">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button class="user-chip" id="userMenu"><span class="user-avatar">VK</span><span class="user-meta"><strong>Vedant Kulkarni</strong><small>Lead Investigator</small></span></button>
+      </div>
+    </header>
+
+    <div class="shell-body">
+      <!-- LEFT SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-scroll" id="sidebarNav" aria-label="Primary navigation"></nav>
+        <div class="sidebar-footer">
+          <button class="sidebar-foot-btn" data-nav="states"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg><span>Component states</span></button>
+          <div class="sidebar-profile-row"><span class="avatar-mini">VK</span><div><strong>Vedant K.</strong><small>Lead Investigator</small></div><span class="plan-tag">PRO</span></div>
+        </div>
+      </aside>
+      <div class="resizer resizer-left" id="resizerLeft" role="separator" aria-orientation="vertical" aria-label="Resize navigation"></div>
+
+      <!-- CENTER WORKSPACE -->
+      <main class="workspace" id="workspace">
+        <div class="tabstrip" id="tabstrip"></div>
+        <div class="view-scroll" id="viewScroll"><div id="view" class="view"></div></div>
+      </main>
+
+      <!-- RIGHT CONTEXTUAL PANEL -->
+      <div class="resizer resizer-right" id="resizerRight" role="separator" aria-orientation="vertical" aria-label="Resize context panel"></div>
+      <aside class="context-panel" id="contextPanel">
+        <div class="context-head">
+          <div><span class="context-eyebrow">LIVE CONTEXT</span><h2 id="contextTitle">Investigation pulse</h2></div>
+          <button class="icon-btn sm" id="contextCollapse" aria-label="Collapse panel" title="Collapse panel"><svg viewBox="0 0 24 24" fill="none"><path d="m13 6 6 6-6 6M5 12h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="context-scroll" id="contextBody"></div>
+      </aside>
+      <button class="context-reopen" id="contextReopen" title="Open context panel" aria-label="Open context panel"><svg viewBox="0 0 24 24" fill="none"><path d="m11 6-6 6 6 6M19 12H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+
+    <!-- BOTTOM STATUS BAR -->
+    <footer class="statusbar">
+      <div class="status-group"><span class="status-item"><span class="dot accent"></span><strong id="statusAgents">6 agents active</strong></span><span class="sep"></span><span class="status-item"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 21h8m-4-3v3" stroke="currentColor" stroke-width="1.6"/></svg>3 MCP servers</span></div>
+      <div class="status-group"><span class="status-item" id="statusTask"><span class="mini-spinner"></span>Investigation INV-2041 executing</span><span class="sep"></span><span class="status-item"><span class="dot success"></span>System health 99.98%</span><span class="sep"></span><span class="status-item mono">AES-256 · Encrypted</span><span class="sep"></span><span class="status-item">v3.4.0</span></div>
+    </footer>
+  </div>
+
+  <!-- OVERLAYS -->
+  <div class="overlay" id="paletteOverlay" hidden>
+    <div class="palette" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="palette-input-wrap"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input id="paletteInput" type="text" placeholder="Type a command, search cases, tools, agents…" autocomplete="off" /><kbd>ESC</kbd></div>
+      <div class="palette-results" id="paletteResults"></div>
+      <div class="palette-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> select</span><span><kbd>⌘</kbd><kbd>K</kbd> toggle</span></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="modalOverlay" hidden><div class="modal" id="modalHost" role="dialog" aria-modal="true"></div></div>
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <div class="context-menu" id="contextMenu" hidden></div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/screens-a.js"></script>
+  <script src="js/screens-b.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
